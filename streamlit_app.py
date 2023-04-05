@@ -96,11 +96,11 @@ gb.configure_grid_options(enableRangeSelection=True)
 gridOptions = gb.build()
 
 data = AgGrid(df,
-                   gridOptions=gridOptions,
-                   enable_enterprise_modules=True,
-                   update_mode=GridUpdateMode.SELECTION_CHANGED,
-                   #height=400
-                   )
+              gridOptions=gridOptions,
+              enable_enterprise_modules=False,
+              update_mode=GridUpdateMode.SELECTION_CHANGED,
+              #height=400
+             )
 st.session_state.selection = pd.DataFrame(data["selected_rows"]).iloc[:, 1:]
 
 if len(st.session_state.selection) > 0:
