@@ -65,7 +65,7 @@ s_spring = process_df(pd.read_csv(spring, sep="\t"))
 dfs = {s[0]: s[1] for s in [s_fall, s_spring]}
 
 
-st.header("Schedule of MTH Courses")
+st.title("Schedule of MTH Courses")
 
 
 st.selectbox(
@@ -98,7 +98,8 @@ gridOptions = gb.build()
 data = AgGrid(df,
                    gridOptions=gridOptions,
                    enable_enterprise_modules=True,
-                   update_mode=GridUpdateMode.SELECTION_CHANGED
+                   update_mode=GridUpdateMode.SELECTION_CHANGED,
+                   height=400
                    )
 st.session_state.selection = pd.DataFrame(data["selected_rows"]).iloc[:, 1:]
 
