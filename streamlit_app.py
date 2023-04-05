@@ -92,7 +92,7 @@ gb.configure_columns(["start", "end", "days"], width = 80)
 gb.configure_columns(["room", "mode"], width = 100)
 gb.configure_columns(["course_num", "faculty"], width = 140)
 gb.configure_columns(["faculty email"], width = 160)
-gb.configure_pagination(enabled=False, paginationAutoPageSize=False, paginationPageSize=50)
+gb.configure_grid_options(enableRangeSelection=True)
 gridOptions = gb.build()
 
 data = AgGrid(df,
@@ -106,3 +106,4 @@ st.session_state.selection = pd.DataFrame(data["selected_rows"]).iloc[:, 1:]
 if len(st.session_state.selection) > 0:
     container.subheader("Selected rows")
     container.dataframe(st.session_state.selection.set_index("course_num", drop=True))
+
