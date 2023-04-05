@@ -92,7 +92,9 @@ gb.configure_columns(["start", "end", "days"], width = 80)
 gb.configure_columns(["room", "mode"], width = 100)
 gb.configure_columns(["course_num", "faculty"], width = 160)
 gb.configure_columns(["faculty email"], width = 160)
-gb.configure_grid_options(enableRangeSelection=True)
+gb.configure_grid_options(enableRangeSelection=True,
+                          enableRangeHandle=True,
+                          )
 gridOptions = gb.build()
 
 data = AgGrid(df,
