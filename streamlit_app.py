@@ -67,13 +67,13 @@ dfs = {s[0]: s[1] for s in [s_fall, s_spring]}
 
 st.title("Schedule of MTH Courses")
 
+col1, col2 = st.columns([1, 3])
 
-st.selectbox(
-"",
-dfs.keys(),
-label_visibility="collapsed",
-key = "select_semester",
-)
+col1.selectbox("",
+               dfs.keys(),
+               label_visibility="collapsed",
+               key = "select_semester"
+               )
 
 #st.header(st.session_state.select_semester)
 df = dfs[st.session_state.select_semester]
