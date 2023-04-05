@@ -32,7 +32,7 @@ def process_df(df):
                    axis=1
                   )
 
-    df = df[df["course_num"].str.split(" ").str[0].isin(["MTH", "ULC"])]
+    df = df[df["course_num"].str.split(" ").str[0].isin(["MTH", "ULC", "CDA"])]
     df.loc[df["faculty email"].str.startswith("None"), "faculty email"] = "Unknown"
 
     df = df[["course_num",
