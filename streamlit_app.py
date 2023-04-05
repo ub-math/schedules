@@ -101,11 +101,10 @@ data = AgGrid(df,
               gridOptions=gridOptions,
               enable_enterprise_modules=True,
               update_mode=GridUpdateMode.SELECTION_CHANGED,
-              height=500
+              #height=400
              )
 st.session_state.selection = pd.DataFrame(data["selected_rows"]).iloc[:, 1:]
 
 if len(st.session_state.selection) > 0:
     container.subheader("Selected rows")
     container.dataframe(st.session_state.selection.set_index("course_num", drop=True))
-
