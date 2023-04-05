@@ -55,14 +55,16 @@ def process_df(df):
 
 
 fall = "https://blue.math.buffalo.edu/assoc_chair/2239/2239_all_mth_courses.csv"
+summer = "https://blue.math.buffalo.edu/assoc_chair/2236/2236_all_mth_courses.csv"
 spring = "https://blue.math.buffalo.edu/assoc_chair/2231/2231_all_mth_courses.csv"
 
 
 s_fall = process_df(pd.read_csv(fall, sep="\t"))
+s_summer = process_df(pd.read_csv(summer, sep="\t"))
 s_spring = process_df(pd.read_csv(spring, sep="\t"))
 
 
-dfs = {s[0]: s[1] for s in [s_fall, s_spring]}
+dfs = {s[0]: s[1] for s in [s_fall, s_summer, s_spring]}
 
 
 st.title("Schedule of MTH Courses")
