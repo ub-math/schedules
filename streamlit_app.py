@@ -32,6 +32,7 @@ def process_df(df):
                    axis=1
                   )
 
+    df = df[df["course_num"].str.split(" ").str[0].isin(["MTH", "ULC"])]
     df.loc[df["faculty email"].str.startswith("None"), "faculty email"] = "Unknown"
 
     df = df[["course_num",
@@ -81,7 +82,7 @@ df = dfs[st.session_state.select_semester]
 
 
 
-
+container = st.container()
 
 gb = GridOptionsBuilder.from_dataframe(df)
 gb.configure_side_bar()
@@ -91,7 +92,7 @@ gb.configure_columns(["start", "end", "days"], width = 80)
 gb.configure_columns(["room", "mode"], width = 100)
 gb.configure_columns(["course_num", "faculty"], width = 140)
 gb.configure_columns(["faculty email"], width = 160)
-gb.configure_grid_options(rows=10)
+gb.configure_pagination(enabled=False, paginationAutoPageSize=False, paginationPageSize=50)
 gridOptions = gb.build()
 
 data = AgGrid(df,
@@ -99,6 +100,8 @@ data = AgGrid(df,
                    enable_enterprise_modules=True,
                    update_mode=GridUpdateMode.SELECTION_CHANGED
                    )
+st.session_state.selection = pd.DataFrame(data["selected_rows"]).iloc[:, 1:]
 
-
-st.dataframe(pd.DataFrame(data["selected_rows"]).iloc[:, 1:])
+if len(st.session_state.selection) > 0:
+    container.subheader("Selected rows")
+    container.dataframe(st.session_state.selection.set_index("course_num", drop=True))
