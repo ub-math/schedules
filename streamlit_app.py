@@ -94,4 +94,4 @@ df = dfs[st.session_state.select_semester]
 st.dataframe(df)
 
 
-AgGrid(df,  fit_columns_on_grid_load=True)
+AgGrid(df,  fit_columns_on_grid_load=False)
