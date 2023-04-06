@@ -34,6 +34,7 @@ def process_df(df):
 
     df = df[df["course_num"].str.split(" ").str[0].isin(["MTH", "ULC", "CDA"])]
     df.loc[df["faculty email"].str.startswith("None"), "faculty email"] = "Unknown"
+    df["faculty"] = df["faculty"].str.extract(r"([A-Za-z]+(\s*,\s*[A-Z])?)")[0]
 
     df = df[["course_num",
              "type",
