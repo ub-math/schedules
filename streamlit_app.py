@@ -3,9 +3,12 @@ import glob
 import re
 from pathlib import Path
 import pandas as pd
+import matplotlib.pyplot as plt
 from st_aggrid import AgGrid
 from st_aggrid.grid_options_builder import GridOptionsBuilder
 from st_aggrid.shared import GridUpdateMode
+
+from plots import plot_schedule
 
 
 st.set_page_config(page_title="UB MTH Course Schedule", layout="wide")
@@ -32,9 +35,13 @@ def process_df(df):
                    axis=1
                   )
 
+
     df = df[df["course_num"].str.split(" ").str[0].isin(["MTH", "ULC", "CDA"])]
+    df["course_num"] = df["course_num"].str.extract(r"([A-Z]{3} \d{3})[^ ]+(.*)").sum(axis=1)
+    df = df[df["type"] != "TUT"]
     df.loc[df["faculty email"].str.startswith("None"), "faculty email"] = "Unknown"
-    df["faculty"] = df["faculty"].str.extract(r"([A-Za-z]+(\s*,\s*[A-Z])?)")[0]
+    df["faculty"] = df["faculty"].str.extract(r"([A-Za-z]+(\s*,\s*[A-Za-z]+)?)")[0]
+
 
     df = df[["course_num",
              "type",
@@ -49,6 +56,7 @@ def process_df(df):
              "cap",
              "mode"
             ]].copy()
+
 
     df = df.sort_values(by="course_num")
 
@@ -86,6 +94,7 @@ df = dfs[st.session_state.select_semester]
 
 
 container = st.container()
+ccol1, ccol2, ccol3, = container.columns([1, 1, 1])
 
 gb = GridOptionsBuilder.from_dataframe(df)
 gb.configure_side_bar()
@@ -109,6 +118,15 @@ data = AgGrid(df,
              )
 st.session_state.selection = pd.DataFrame(data["selected_rows"]).iloc[:, 1:]
 
+
+st.session_state.selection_plot = plt.figure()
+
+def make_plot():
+
+    st.session_state["selection_plot"] = plot_schedule(st.session_state.selection)
+    ccol2.pyplot(st.session_state.selection_plot)
+
 if len(st.session_state.selection) > 0:
     container.subheader("Selected rows")
     container.dataframe(st.session_state.selection.set_index("course_num", drop=True))
+    container.button("Plot selection", on_click = make_plot)
