@@ -40,7 +40,7 @@ def process_df(df):
     df["course_num"] = df["course_num"].str.extract(r"([A-Z]{3} \d{3})[^ ]+(.*)").sum(axis=1)
     df = df[df["type"] != "TUT"]
     df.loc[df["faculty email"].str.startswith("None"), "faculty email"] = "Unknown"
-    df["faculty"] = df["faculty"].str.extract(r"([A-Za-z]+(\s*,\s*[A-Za-z]+)?)")[0]
+    df["faculty"] = df["faculty"].str.extract(r"([A-Za-z ]+(\s*,\s*[A-Za-z]+)?)")[0]
 
 
     df = df[["course_num",
