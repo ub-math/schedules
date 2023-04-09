@@ -30,7 +30,7 @@ def plot_grid(figsize=(16, 10)):
     ax.set_xticks(range(5))
     ax.set_xticklabels('')
     ax.set_xticks(np.arange(5) + 0.5, list(WEEK), minor=True)
-    ax.set_yticks(range(8, 19, 1), fontweight="bold")
+    ax.set_yticks(range(8, 19, 1))
     ax.tick_params(axis='y', which='major', labelsize=24)
     ax.tick_params(axis='x', which='minor', labelsize=24)
     ax.set_axisbelow(True)
