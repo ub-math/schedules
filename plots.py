@@ -9,7 +9,7 @@ import seaborn as sns
 
 WEEK = "MTWRF"
 
-def plot_grid(figsize=(11, 10)):
+def plot_grid(figsize=(16, 10)):
     """
     Creates a matplotlib figure and plots on it a weekly time grid.
 
