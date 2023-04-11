@@ -15,6 +15,7 @@ st.set_page_config(page_title="UB MTH Course Schedule", layout="wide")
 
 st.session_state.selection = None
 
+
 def process_df(df):
 
     semester = df.iat[0, 1]
@@ -43,20 +44,37 @@ def process_df(df):
     df["faculty"] = df["faculty"].str.extract(r"([A-Za-z]+)[^,]*(,\s*[A-Za-z]+)?").fillna("").sum(axis=1)
 
 
-    df = df[["course_num",
-             "type",
-             "course_name",
-             "faculty",
-             "faculty email",
-             "days",
-             "start",
-             "end",
-             "room",
-             "reg",
-             "cap",
-             "mode"
-            ]].copy()
 
+    non_MTH = (~df["course_num"].str.match(r"MTH.*")) | df["course_num"].str.match(r"MTH\s+(112|113|114).*")
+    df["prefix"] = df["course_num"].str.extract(r"^(.+?)[1-9]?$")
+    df.loc[non_MTH, "prefix"] =  df.loc[non_MTH, "course_num"]
+
+
+    def add_lecturer(g):
+        if "LEC" in g["type"].values:
+            lecturer = g[g["type"] == "LEC"]["lecturer"].iloc[0]
+            g['lecturer'] = lecturer
+        return g
+
+    df["lecturer"] = df["faculty"]
+    df = df.groupby(by="prefix", group_keys=False).apply(add_lecturer)
+
+
+    df = df[["course_num",
+            "type",
+            "course_name",
+            "faculty",
+            "faculty email",
+            "lecturer",
+            "days",
+            "start",
+            "end",
+            "room",
+            "reg",
+            "cap",
+            "mode",
+            "prefix"
+        ]].copy()
 
     df = df.sort_values(by="course_num")
 
@@ -102,8 +120,8 @@ gb.configure_selection(selection_mode="multiple", use_checkbox=True)
 gb.configure_columns(["type", "reg", "cap"], width = 70)
 gb.configure_columns(["start", "end", "days"], width = 80)
 gb.configure_columns(["room", "mode"], width = 100)
-gb.configure_columns(["course_num"], width = 160)
-gb.configure_columns(["faculty"], width = 120)
+gb.configure_columns(["course_num", "prefix"], width = 160)
+gb.configure_columns(["faculty", "lecturer"], width = 120)
 gb.configure_columns(["faculty email"], width = 160)
 gb.configure_grid_options(enableRangeSelection=True,
                           enableRangeHandle=True,
