@@ -73,7 +73,6 @@ def process_df(df):
             "reg",
             "cap",
             "mode",
-            "prefix"
         ]].copy()
 
     df = df.sort_values(by="course_num")
@@ -120,7 +119,7 @@ gb.configure_selection(selection_mode="multiple", use_checkbox=True)
 gb.configure_columns(["type", "reg", "cap"], width = 70)
 gb.configure_columns(["start", "end", "days"], width = 80)
 gb.configure_columns(["room", "mode"], width = 100)
-gb.configure_columns(["course_num", "prefix"], width = 160)
+gb.configure_columns(["course_num"], width = 160)
 gb.configure_columns(["faculty", "lecturer"], width = 120)
 gb.configure_columns(["faculty email"], width = 160)
 gb.configure_grid_options(enableRangeSelection=True,
