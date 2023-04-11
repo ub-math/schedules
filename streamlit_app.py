@@ -113,7 +113,7 @@ df = dfs[st.session_state.select_semester]
 container = st.container()
 ccol1, ccol2, ccol3, = container.columns([1, 1, 1])
 
-st.markdown("**Note.** The `Lecturer` column lists the course lecturer - the same for lectures and all associated recitation of the course")
+st.markdown("**Note.** The `lecturer` column lists the course lecturer - the same for lectures and all associated recitation of the course")
 gb = GridOptionsBuilder.from_dataframe(df)
 gb.configure_side_bar()
 gb.configure_selection(selection_mode="multiple", use_checkbox=True)
