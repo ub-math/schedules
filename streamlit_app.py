@@ -93,7 +93,7 @@ s_fall = process_df(pd.read_csv(fall, sep="\t"))
 s_winter = process_df(pd.read_csv(winter, sep="\t"))
 s_spring = process_df(pd.read_csv(spring, sep="\t"))
 
-dfs = {s[0]: s[1] for s in [s_fall, s_summer, s_spring]}
+dfs = {s[0]: s[1] for s in [s_fall, s_winter, s_spring,]}
 
 
 st.title("Schedule of MTH Courses")
