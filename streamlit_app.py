@@ -80,15 +80,18 @@ def process_df(df):
     return semester, df
 
 
-fall = "https://blue.math.buffalo.edu/assoc_chair/2239/2239_all_mth_courses.csv"
+
 summer = "https://blue.math.buffalo.edu/assoc_chair/2236/2236_all_mth_courses.csv"
-spring = "https://blue.math.buffalo.edu/assoc_chair/2231/2231_all_mth_courses.csv"
+fall = "https://blue.math.buffalo.edu/assoc_chair/2239/2239_all_mth_courses.csv"
+winter = "https://blue.math.buffalo.edu/assoc_chair/2240/2240_all_mth_courses.csv"
+spring = "https://blue.math.buffalo.edu/assoc_chair/2241/2241_all_mth_courses.csv"
 
 
-s_fall = process_df(pd.read_csv(fall, sep="\t"))
+
 s_summer = process_df(pd.read_csv(summer, sep="\t"))
+s_fall = process_df(pd.read_csv(fall, sep="\t"))
+s_winter = process_df(pd.read_csv(winter, sep="\t"))
 s_spring = process_df(pd.read_csv(spring, sep="\t"))
-
 
 dfs = {s[0]: s[1] for s in [s_fall, s_summer, s_spring]}
 
