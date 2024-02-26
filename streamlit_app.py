@@ -94,7 +94,6 @@ s_winter = process_df(pd.read_csv(winter, sep="\t"))
 s_spring = process_df(pd.read_csv(spring, sep="\t"))
 
 dfs = {s[0]: s[1] for s in [s_winter, s_spring, s_summer, s_fall]}
-#dfs = {s[0]: s[1] for s in [s_winter, s_spring, s_summer, s_fall]}
 
 
 st.title("Schedule of MTH Courses")
@@ -103,7 +102,7 @@ col1, col2 = st.columns([1, 3])
 
 col1.selectbox("",
                dfs.keys(),
-               index=0,
+               index=2,
                label_visibility="collapsed",
                key = "select_semester"
                )
