@@ -88,10 +88,10 @@ spring = "https://blue2021.math.buffalo.edu/assoc_chair/2241/2241_all_mth_course
 
 
 
-s_summer = process_df(pd.read_csv(summer, sep="\t"))
-s_fall = process_df(pd.read_csv(fall, sep="\t"))
-s_winter = process_df(pd.read_csv(winter, sep="\t"))
-s_spring = process_df(pd.read_csv(spring, sep="\t"))
+#s_summer = process_df(pd.read_csv(summer, sep="\t"))
+#s_fall = process_df(pd.read_csv(fall, sep="\t"))
+#s_winter = process_df(pd.read_csv(winter, sep="\t"))
+#s_spring = process_df(pd.read_csv(spring, sep="\t"))
 
 dfs = {s[0]: s[1] for s in [s_winter, s_spring, s_summer, s_fall]}
 
