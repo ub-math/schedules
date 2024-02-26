@@ -81,10 +81,10 @@ def process_df(df):
 
 
 
-summer = "https://blue2021.math.buffalo.edu/6_all_mth_courses.csv"
-fall = "https://blue2021.math.buffalo.edu/9_all_mth_courses.csv"
-winter = "https://blue.math.buffalo.edu/assoc_chair/2240/2240_all_mth_courses.csv"
-spring = "https://blue2021.math.buffalo.edu/1_all_mth_courses.csv"
+summer = "https://blue2021.math.buffalo.edu/assoc_chair/2246/2246_all_mth_courses.csv"
+fall = "https://blue2021.math.buffalo.edu/assoc_chair/2249/2249_all_mth_courses.csv"
+winter = "https://blue2021.math.buffalo.edu/assoc_chair/2240/2240_all_mth_courses.csv"
+spring = "https://blue2021.math.buffalo.edu/assoc_chair/2241/2241_all_mth_courses.csv"
 
 
 
