@@ -133,11 +133,13 @@ gridOptions = gb.build()
 
 data = AgGrid(df,
               gridOptions=gridOptions,
-              enable_enterprise_modules=True,
+              enable_enterprise_modules=False,
               update_mode=GridUpdateMode.SELECTION_CHANGED,
               height=1000
              )
 st.session_state.selection = pd.DataFrame(data["selected_rows"]).iloc[:, 1:]
+
+print(st.session_state.selection)
 
 
 st.session_state.selection_plot = plt.figure()
