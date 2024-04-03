@@ -135,7 +135,7 @@ gridOptions = gb.build()
 
 data = AgGrid(df,
               gridOptions=gridOptions,
-              enable_enterprise_modules=True,
+              enable_enterprise_modules=False,
               update_mode=GridUpdateMode.SELECTION_CHANGED,
               #height=400
              )
