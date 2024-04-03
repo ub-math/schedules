@@ -112,6 +112,7 @@ df = dfs[st.session_state.select_semester]
 #df = df.set_index("course_num", drop=True)
 #st.dataframe(df)
 
+print(df)
 
 
 container = st.container()
