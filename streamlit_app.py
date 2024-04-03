@@ -135,7 +135,7 @@ data = AgGrid(df,
               gridOptions=gridOptions,
               enable_enterprise_modules=True,
               update_mode=GridUpdateMode.SELECTION_CHANGED,
-              height=400
+              height=800
              )
 st.session_state.selection = pd.DataFrame(data["selected_rows"]).iloc[:, 1:]
 
