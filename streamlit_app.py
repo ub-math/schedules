@@ -112,8 +112,6 @@ df = dfs[st.session_state.select_semester]
 #df = df.set_index("course_num", drop=True)
 #st.dataframe(df)
 
-st.dataframe(df)
-
 
 container = st.container()
 ccol1, ccol2, ccol3, = container.columns([1, 1, 1])
