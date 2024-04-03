@@ -100,7 +100,7 @@ st.title("Schedule of MTH Courses")
 
 col1, col2 = st.columns([1, 3])
 
-col1.selectbox("",
+col1.selectbox("hidden",
                dfs.keys(),
                index=1,
                label_visibility="collapsed",
