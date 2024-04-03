@@ -57,7 +57,7 @@ def process_df(df):
         return g
 
     df["lecturer"] = df["faculty"]
-    df = df.groupby(by="prefix", group_keys=False).apply(add_lecturer)
+    df = df.groupby(by="prefix", group_keys=False).apply(add_lecturer, include_groups = False)
 
 
     df = df[["course_num",
