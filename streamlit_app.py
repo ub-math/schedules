@@ -102,7 +102,7 @@ col1, col2 = st.columns([1, 3])
 
 col1.selectbox("hidden",
                dfs.keys(),
-               index=1,
+               index=3,
                label_visibility="collapsed",
                key = "select_semester"
                )
